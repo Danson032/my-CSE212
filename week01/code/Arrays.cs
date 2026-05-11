@@ -8,12 +8,20 @@ public static class Arrays
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     public static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // First I need an array that can hold all of the multiples.
+        // Then I can loop through each spot in the array.
+        // Every time through the loop, multiply the number by
+        // the loop position + 1 and store it in the array.
+        // Finally, return the finished array.
 
-        return []; // replace this return statement with your own
+        double[] multiples = new double[length];
+
+        for (int i = 0; i < length; i++)
+        {
+            multiples[i] = number * (i + 1);
+        }
+
+        return multiples;
     }
 
     /// <summary>
@@ -25,9 +33,22 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // My idea here is to split the list into two pieces.
+        // The last part of the list will move to the front.
+        // The beginning part will move to the back.
+        //
+        // Example:
+        // {1,2,3,4,5,6,7,8,9} rotated by 3 becomes:
+        // {7,8,9} + {1,2,3,4,5,6}
+
+        int split = data.Count - amount;
+
+        List<int> endPart = data.GetRange(split, amount);
+        List<int> beginningPart = data.GetRange(0, split);
+
+        data.Clear();
+
+        data.AddRange(endPart);
+        data.AddRange(beginningPart);
     }
 }
