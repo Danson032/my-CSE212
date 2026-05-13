@@ -8,11 +8,13 @@ public static class Arrays
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     public static double[] MultiplesOf(double number, int length)
     {
-        // First I need an array that can hold all of the multiples.
-        // Then I can loop through each spot in the array.
-        // Every time through the loop, multiply the number by
-        // the loop position + 1 and store it in the array.
-        // Finally, return the finished array.
+        // PLAN
+        // 1. Create an array that can store the required number of values.
+        // 2. Use a loop to go through each position in the array.
+        // 3. For each position, multiply the starting number by
+        //    the loop number + 1 to get the next multiple.
+        // 4. Store the multiple in the array.
+        // 5. After the loop is finished, return the completed array.
 
         double[] multiples = new double[length];
 
@@ -33,18 +35,25 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-        // My idea here is to split the list into two pieces.
-        // The last part of the list will move to the front.
-        // The beginning part will move to the back.
-        //
-        // Example:
-        // {1,2,3,4,5,6,7,8,9} rotated by 3 becomes:
-        // {7,8,9} + {1,2,3,4,5,6}
+        // PLAN
+        // 1. Find the place where the list should be split.
+        //    The split point is data.Count - amount.
+        // 2. Copy the values from the split point to the end
+        //    of the list into a temporary list.
+        //    These values will move to the front.
+        // 3. Copy the values from the beginning of the list
+        //    up to the split point into another temporary list.
+        //    These values will move to the back.
+        // 4. Clear the original list so it can be rebuilt.
+        // 5. Add the last section of the list first.
+        // 6. Add the beginning section after it.
+        // 7. The list is now rotated to the right by the
+        //    requested amount.
 
-        int split = data.Count - amount;
+        int splitPoint = data.Count - amount;
 
-        List<int> endPart = data.GetRange(split, amount);
-        List<int> beginningPart = data.GetRange(0, split);
+        List<int> endPart = data.GetRange(splitPoint, amount);
+        List<int> beginningPart = data.GetRange(0, splitPoint);
 
         data.Clear();
 
